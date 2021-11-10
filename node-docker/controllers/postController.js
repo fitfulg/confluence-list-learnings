@@ -1,4 +1,4 @@
-const Post = require("../models/postModel");
+const Post = require("../models/postmodel");
 
 exports.getAllPosts = async (req, res, next) => {
   try {
@@ -12,6 +12,7 @@ exports.getAllPosts = async (req, res, next) => {
       },
     });
   } catch (e) {
+    console.log(e);
     res.status(400).json({
       status: "fail",
     });
