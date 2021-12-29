@@ -1,4 +1,4 @@
-export const LazyLayout = () => {
+const LazyLayout = () => {
   return (
     <div>
       <h1>LazyLayout Page</h1>
@@ -7,3 +7,5 @@ export const LazyLayout = () => {
     </div>
   );
 };
+
+export default LazyLayout;
