@@ -20,8 +20,8 @@ const LazyLayout = lazy(
 
 export const routes: Route[] = [
   {
-    to: '/lazy1',
-    path: 'lazy1',
+    path: '/lazyload/*',
+    to: '/lazyload/',
     Component: LazyLayout,
     name: 'LazyLayout - Dashboard',
   },
