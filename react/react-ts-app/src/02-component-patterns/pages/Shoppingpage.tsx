@@ -4,6 +4,7 @@ import {
   ProductImage,
   ProductTitle,
 } from '../components';
+import '../styles/custom-styles.css';
 
 const product = {
   id: '1',
