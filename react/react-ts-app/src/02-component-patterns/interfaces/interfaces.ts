@@ -7,6 +7,16 @@ export interface Product {
   title: string;
   img?: string;
 }
+//  ProductInChart = { ...Product,
+//                     count: number,
+//                    }
+export interface ProductInCart extends Product {
+  count: number;
+}
+export interface onChangeArgs {
+  product: Product;
+  count: number;
+}
 // opcional:
 export interface ProductCardHOCProps {
   ({ children, product }: ProductCardProps): JSX.Element;
