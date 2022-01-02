@@ -30,8 +30,8 @@ export const Shoppingpage = () => {
             product={product}
             customClassName="bg-dark text-white "
             key={product.id}
-            customValue={shoppingCart[product.id]?.count || 0}
-            customOnChange={(e) => onProductCountChange(e)}
+            customValue={shoppingCart[product.id]?.count || 0} //control props
+            customOnChange={(e) => onProductCountChange(e)} //control props
           >
             <ProductImage
               customClassName="custom-image"
@@ -50,8 +50,8 @@ export const Shoppingpage = () => {
             product={product}
             customClassName="bg-dark text-white "
             customStyle={{ width: '100px' }}
-            customValue={product.count}
-            customOnChange={(e) => onProductCountChange(e)}
+            customValue={product.count} //control props
+            customOnChange={(e) => onProductCountChange(e)} //control props
           >
             <ProductImage
               customClassName="custom-image"
