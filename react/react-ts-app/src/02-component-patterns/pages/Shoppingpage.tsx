@@ -1,71 +1,51 @@
-import { useState } from 'react';
 import {
   ProductButtons,
   ProductCard,
   ProductImage,
   ProductTitle,
 } from '../components';
-import { useShoppingCart } from '../hooks/useShoppingCart';
-import { Product } from '../interfaces/interfaces';
 import { products } from '../data/products';
 import '../styles/custom-styles.css';
 
-export const Shoppingpage = () => {
-  const { shoppingCart, onProductCountChange } = useShoppingCart();
+const product = products[0];
 
+export const Shoppingpage = () => {
   return (
     <div>
       <h1>Shopping Store</h1>
       <hr />
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
+      <ProductCard
+        product={product}
+        customClassName="bg-dark text-white "
+        key={product.id}
+        initialValues={{
+          count: 4,
+          maxCount: 10,
         }}
       >
-        {products.map((product: Product) => (
-          <ProductCard
-            product={product}
-            customClassName="bg-dark text-white "
-            key={product.id}
-            customValue={shoppingCart[product.id]?.count || 0} //control props
-            customOnChange={(e) => onProductCountChange(e)} //control props
-          >
+        {/* funcion como children que retorna JSX  */}
+        {({ reset, count, increaseBy, isMaxCountReached, maxCount }) => (
+          <>
             <ProductImage
               customClassName="custom-image"
               customStyle={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
             />
             <ProductTitle customClassName="text-bold" />
             <ProductButtons customClassName="custom-buttons" />
-          </ProductCard>
-        ))}
-      </div>
-      {/* CARRITO DE COMPRAS: */}
-      <div className="shopping-cart">
-        {Object.entries(shoppingCart).map(([key, product]) => (
-          <ProductCard
-            key={key}
-            product={product}
-            customClassName="bg-dark text-white "
-            customStyle={{ width: '100px' }}
-            customValue={product.count} //control props
-            customOnChange={(e) => onProductCountChange(e)} //control props
-          >
-            <ProductImage
-              customClassName="custom-image"
-              customStyle={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.2)' }}
-            />
-            <ProductTitle customClassName="text-bold" />
 
-            <ProductButtons
-              customClassName="custom-buttons"
-              customStyle={{ display: 'flex', justifyContent: 'center' }}
-            />
-          </ProductCard>
-        ))}
-      </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={() => increaseBy(-2)}>-2</button>
+            {!isMaxCountReached && (
+              <button onClick={() => increaseBy(+2)}>+2</button>
+            )}
+
+            <span>
+              {count} - {maxCount}
+            </span>
+          </>
+        )}
+      </ProductCard>
     </div>
   );
 };
